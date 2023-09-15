@@ -12,10 +12,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Simple score keeper'),
+        title: const Text('Simple score keeper'),
         backgroundColor: Colors.grey,
       ),
-      body: Column(
+      body: const Column(
         children: [
           SizedBox(height: 50),
           Row(

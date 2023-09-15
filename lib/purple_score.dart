@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 class PurplePage extends StatefulWidget {
 
-  PurplePage({super.key,});
+  const PurplePage({super.key,});
 
   @override
   State<PurplePage> createState() => _PurplePageState();
@@ -13,12 +13,12 @@ class _PurplePageState extends State<PurplePage> {
   Widget build(BuildContext context) {
     return  Column(
       children: [
-        SizedBox(width: 40,),
+        const SizedBox(width: 40,),
         Container(
           alignment: Alignment.center,
           width: 160,
           height: 70,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
 
               borderRadius: BorderRadius.circular(15),
@@ -33,10 +33,10 @@ class _PurplePageState extends State<PurplePage> {
             ],
           ),
           child: Text(
-            '${rednumber}',style: TextStyle(fontWeight: FontWeight.w800,fontSize: 50),
+            '$rednumber',style: const TextStyle(fontWeight: FontWeight.w800,fontSize: 50),
           ),
         ),
-        SizedBox(height: 45,),
+        const SizedBox(height: 45,),
         InkWell(
           onTap: (){
             setState(() {
@@ -52,17 +52,17 @@ class _PurplePageState extends State<PurplePage> {
             alignment: Alignment.center,
             width: 160,
             height: 70,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(10),
+            decoration: const BoxDecoration(
 
               color: Colors.purple,
             ),
-            child: Text(
+            child: const Text(
               '+',style: TextStyle(fontWeight: FontWeight.w800,fontSize: 50),
             ),
           ),
         ),
-        SizedBox(height: 30,),
+        const SizedBox(height: 30,),
         InkWell(
           onTap: (){
             setState(() {
@@ -82,12 +82,12 @@ class _PurplePageState extends State<PurplePage> {
             alignment: Alignment.center,
             width: 160,
             height: 70,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(10),
+            decoration: const BoxDecoration(
 
               color: Colors.purple,
             ),
-            child: Text(
+            child: const Text(
               '-',style: TextStyle(fontWeight: FontWeight.w800,fontSize: 50),
             ),
           ),
