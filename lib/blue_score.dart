@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 class BluePage extends StatefulWidget {
+  final Function() restore;
 
-  const BluePage({super.key,});
+  const BluePage({super.key,required this.restore});
 
   @override
   State<BluePage> createState() => _BluePageState();
