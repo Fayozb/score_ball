@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:game_number/red_score.dart';
+import 'package:game_number/counter_item.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -18,26 +18,64 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF3F3F3F),
+      backgroundColor: const Color(0xFF212121),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF212121),
+        backgroundColor: const Color(0xFF3F3F3F),
         title: const Text('Score keeper'),
         actions: [
           PopupMenuButton(
             itemBuilder: (_) => [
               const PopupMenuItem(
                 value: 0,
-                child: Text('Reset'),
+                child: Text('All Reset',style: TextStyle(color: Colors.black),),
               ),
+              const PopupMenuItem(
+                value: 1,
+                child: Text('Red Reset',style: TextStyle(color: Colors.red),),
+              ),
+              const PopupMenuItem(
+                value: 2,
+                child: Text('Blue Reset',style: TextStyle(color: Colors.blue),),
+              ),
+              const PopupMenuItem(
+                value: 3,
+                child: Text('Green Reset',style: TextStyle(color: Colors.green),),
+              ),
+              const PopupMenuItem(
+                value: 4,
+                child: Text('Purple reset',style: TextStyle(color: Colors.purple),),
+              )
             ],
             onSelected: (value) {
-              if (value == 0) {
-                setState(() {
-                  _blueScore = 0;
-                  _greenScore = 0;
-                  _purpleScore = 0;
-                  _redScore = 0;
-                });
+              switch (value) {
+                case 0:
+                  setState(() {
+                    _purpleScore = 0;
+                    _greenScore = 0;
+                    _blueScore = 0;
+                    _redScore = 0;
+                  });
+                  break;
+                case 1:
+                  setState(() {
+                    _redScore = 0;
+                  });
+                  break;
+                case 2:
+                  setState(() {
+                    _blueScore = 0;
+                  });
+                  break;
+                case 3:
+                  setState(() {
+                    _greenScore = 0;
+                  });
+                  break;
+                case 4:
+                  setState(() {
+                    _purpleScore = 0;
+                  });
+                  break;
               }
             },
           ),
