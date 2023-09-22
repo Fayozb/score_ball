@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:game_number/counter_item.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+
+import 'counter_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   int _blueScore = 0;
   int _greenScore = 0;
   int _purpleScore = 0;
+  Timer? _timer;
 
   @override
   Widget build(BuildContext context) {
@@ -27,23 +30,38 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (_) => [
               const PopupMenuItem(
                 value: 0,
-                child: Text('All Reset',style: TextStyle(color: Colors.black),),
+                child: Text(
+                  'All Reset',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               const PopupMenuItem(
                 value: 1,
-                child: Text('Red Reset',style: TextStyle(color: Colors.red),),
+                child: Text(
+                  'Red Reset',
+                  style: TextStyle(color: Colors.red),
+                ),
               ),
               const PopupMenuItem(
                 value: 2,
-                child: Text('Blue Reset',style: TextStyle(color: Colors.blue),),
+                child: Text(
+                  'Blue Reset',
+                  style: TextStyle(color: Colors.blue),
+                ),
               ),
               const PopupMenuItem(
                 value: 3,
-                child: Text('Green Reset',style: TextStyle(color: Colors.green),),
+                child: Text(
+                  'Green Reset',
+                  style: TextStyle(color: Colors.green),
+                ),
               ),
               const PopupMenuItem(
                 value: 4,
-                child: Text('Purple reset',style: TextStyle(color: Colors.purple),),
+                child: Text(
+                  'Purple reset',
+                  style: TextStyle(color: Colors.purple),
+                ),
               )
             ],
             onSelected: (value) {
@@ -103,6 +121,32 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                   color: Colors.red,
+                  onLongTap: () {
+                    debugPrint('===> on long tap is working');
+                    _timer = Timer.periodic(
+                      const Duration(milliseconds: 200),
+                      (timer) {
+                        setState(() {
+                          _redScore++;
+                        });
+                      },
+                    );
+                  },
+                  onTapCancel: () {
+                    _timer?.cancel();
+                  },
+                  onSubtractLongTap: () {
+                    _timer = Timer.periodic(
+                      const Duration(milliseconds: 200),
+                      (timer) {
+                        if(_redScore>0) {
+                          setState(() {
+                           _redScore--;
+                        });
+                        }
+                      },
+                    );
+                  },
                 ),
               ),
               Expanded(
@@ -122,6 +166,31 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                   color: Colors.blue,
+                  onLongTap: () {
+                    _timer = Timer.periodic(
+                      const Duration(milliseconds: 200),
+                      (timer) {
+                        setState(() {
+                          _blueScore++;
+                        });
+                      },
+                    );
+                  },
+                  onTapCancel: () {
+                    _timer?.cancel();
+                  },
+                  onSubtractLongTap: () {
+                    _timer = Timer.periodic(
+                      const Duration(milliseconds: 200),
+                      (timer) {
+                        if(_blueScore>0) {
+                          setState(() {
+                            _blueScore--;
+                          });
+                        }
+                      },
+                    );
+                  },
                 ),
               ),
             ],
@@ -145,6 +214,31 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                   color: Colors.green,
+                  onLongTap: () {
+                    _timer = Timer.periodic(
+                      const Duration(milliseconds: 200),
+                      (timer) {
+                        setState(() {
+                          _greenScore++;
+                        });
+                      },
+                    );
+                  },
+                  onTapCancel: () {
+                    _timer?.cancel();
+                  },
+                  onSubtractLongTap: () {
+                    _timer = Timer.periodic(
+                      const Duration(milliseconds: 200),
+                      (timer) {
+                        if(_greenScore>0) {
+                          setState(() {
+                            _greenScore--;
+                          });
+                        }
+                      },
+                    );
+                  },
                 ),
               ),
               Expanded(
@@ -164,6 +258,31 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                   color: Colors.purple,
+                  onLongTap: () {
+                    _timer = Timer.periodic(
+                      const Duration(milliseconds: 200),
+                      (timer) {
+                        setState(() {
+                          _purpleScore++;
+                        });
+                      },
+                    );
+                  },
+                  onTapCancel: () {
+                    _timer?.cancel();
+                  },
+                  onSubtractLongTap: () {
+                    _timer = Timer.periodic(
+                      const Duration(milliseconds: 200),
+                      (timer) {
+                        if(_purpleScore>0) {
+                          setState(() {
+                            _purpleScore--;
+                          });
+                        }
+                      },
+                    );
+                  },
                 ),
               ),
             ],
