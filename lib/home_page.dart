@@ -1,60 +1,135 @@
 import 'package:flutter/material.dart';
-import 'package:game_number/green_score.dart';
-import 'package:game_number/purple_score.dart';
 import 'package:game_number/red_score.dart';
-import 'package:provider/provider.dart';
-import 'app_provider.dart';
-import 'blue_score.dart';
-class HomePage extends StatelessWidget {
+
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  int _redScore = 0;
+  int _blueScore = 0;
+  int _greenScore = 0;
+  int _purpleScore = 0;
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<AppProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xFF3F3F3F),
       appBar: AppBar(
-        title: const Text('Simple score keeper'),
-        backgroundColor: Colors.grey,
+        backgroundColor: const Color(0xFF212121),
+        title: const Text('Score keeper'),
         actions: [
           PopupMenuButton(
             itemBuilder: (_) => [
               const PopupMenuItem(
-                value: 'uz',
-                child: Text('O\'zbekcha'),
+                value: 0,
+                child: Text('Reset'),
               ),
             ],
             onSelected: (value) {
-              provider;
-
+              if (value == 0) {
+                setState(() {
+                  _blueScore = 0;
+                  _greenScore = 0;
+                  _purpleScore = 0;
+                  _redScore = 0;
+                });
+              }
             },
           ),
         ],
       ),
-      body: const Column(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SizedBox(height: 50),
           Row(
             children: [
-              SizedBox(width: 20,),
-              RedPage(),
-              SizedBox(width: 40,),
-              BluePage(restore: ,),
+              Expanded(
+                child: CounterItem(
+                  count: _redScore,
+                  onAdd: () {
+                    setState(() {
+                      _redScore++;
+                    });
+                  },
+                  onSubtract: () {
+                    if (_redScore <= 0) {
+                      return;
+                    }
+                    setState(() {
+                      _redScore--;
+                    });
+                  },
+                  color: Colors.red,
+                ),
+              ),
+              Expanded(
+                child: CounterItem(
+                  count: _blueScore,
+                  onAdd: () {
+                    setState(() {
+                      _blueScore++;
+                    });
+                  },
+                  onSubtract: () {
+                    if (_blueScore <= 0) {
+                      return;
+                    }
+                    setState(() {
+                      _blueScore--;
+                    });
+                  },
+                  color: Colors.blue,
+                ),
+              ),
             ],
           ),
-          SizedBox(height: 50,),
           Row(
             children: [
-              SizedBox(width: 20,),
-              GreenPage(),
-              SizedBox(width: 40,),
-              PurplePage()
+              Expanded(
+                child: CounterItem(
+                  count: _greenScore,
+                  onAdd: () {
+                    setState(() {
+                      _greenScore++;
+                    });
+                  },
+                  onSubtract: () {
+                    if (_greenScore <= 0) {
+                      return;
+                    }
+                    setState(() {
+                      _greenScore--;
+                    });
+                  },
+                  color: Colors.green,
+                ),
+              ),
+              Expanded(
+                child: CounterItem(
+                  count: _purpleScore,
+                  onAdd: () {
+                    setState(() {
+                      _purpleScore++;
+                    });
+                  },
+                  onSubtract: () {
+                    if (_purpleScore <= 0) {
+                      return;
+                    }
+                    setState(() {
+                      _purpleScore--;
+                    });
+                  },
+                  color: Colors.purple,
+                ),
+              ),
             ],
-          )
-
-
+          ),
         ],
       ),
     );

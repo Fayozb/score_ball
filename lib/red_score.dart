@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
-class RedPage extends StatefulWidget {
 
-  const RedPage({super.key,});
+class CounterItem extends StatelessWidget {
+  final int count;
+  final Function() onAdd;
+  final Function() onSubtract;
+  final Color color;
 
-  @override
-  State<RedPage> createState() => _RedPageState();
-}
+  const CounterItem({
+    super.key,
+    required this.count,
+    required this.onAdd,
+    required this.onSubtract,
+    required this.color,
+  });
 
-class _RedPageState extends State<RedPage> {
-  int rednumber = 0;
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
-        const SizedBox(width: 40,),
+        const SizedBox(width: 40),
         Container(
           alignment: Alignment.center,
           width: 160,
@@ -21,77 +26,54 @@ class _RedPageState extends State<RedPage> {
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.red,
+            color: color,
             boxShadow: [
               BoxShadow(
-                color: Colors.red.shade400,
+                color: color,
                 blurRadius: 20,
                 spreadRadius: 2,
-
               ),
             ],
           ),
           child: Text(
-            '$rednumber',style: const TextStyle(fontWeight: FontWeight.w800,fontSize: 50),
+            '$count',
+            style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 50),
           ),
         ),
-        const SizedBox(height: 45,),
+        const SizedBox(
+          height: 45,
+        ),
         InkWell(
-          onTap: (){
-            setState(() {
-              rednumber++;
-            });
-          },
-          onLongPress: (){
-            setState(() {
-              rednumber = 0;
-            });
-          },
+          onTap: onAdd,
           child: Container(
             alignment: Alignment.center,
             width: 160,
             height: 70,
             padding: const EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-
-              color: Colors.red,
-            ),
+            decoration: BoxDecoration(color: color),
             child: const Text(
-              '+',style: TextStyle(fontWeight: FontWeight.w800,fontSize: 50),
+              '+',
+              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 50),
             ),
           ),
         ),
-        const SizedBox(height: 30,),
+        const SizedBox(
+          height: 30,
+        ),
         InkWell(
-          onTap: (){
-            setState(() {
-              if(rednumber == 0){
-              }
-              else{
-                rednumber--;
-              }
-            });
-          },
-          onLongPress: (){
-            setState(() {
-              rednumber = 0;
-            });
-          },
+          onTap: onSubtract,
           child: Container(
             alignment: Alignment.center,
             width: 160,
             height: 70,
             padding: const EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-
-              color: Colors.red,
-            ),
+            decoration: BoxDecoration(color: color),
             child: const Text(
-              '-',style: TextStyle(fontWeight: FontWeight.w800,fontSize: 50),
+              '-',
+              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 50),
             ),
           ),
         )
-
       ],
     );
   }
